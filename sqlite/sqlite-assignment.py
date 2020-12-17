@@ -6,6 +6,7 @@ conn = sqlite3.connect('assignment.db')
 
 with conn:
     cur = conn.cursor()
+    # db created
     cur.execute("CREATE TABLE IF NOT EXISTS tbl_files( \
         ID INTEGER PRIMARY KEY AUTOINCREMENT, \
         string TEXT \
@@ -16,32 +17,17 @@ conn.close()
 
 conn = sqlite3.connect('assignment.db')
 
+fileList = ('information.docx','Hello.txt','myImage.png', \
+            'myMovie.mpg','World.txt','data.pdf','myPhoto.jpg')
+
 with conn:
     cur = conn.cursor()
-    cur.execute("REPLACE INTO tbl_files(string) VALUES (?)", \
-                ('information.docx',))
-    cur.execute("REPLACE INTO tbl_files(string) VALUES (?)", \
-                ('Hello.txt',))
-    cur.execute("REPLACE INTO tbl_files(string) VALUES (?)", \
-                ('myImage.png',))
-    cur.execute("REPLACE INTO tbl_files(string) VALUES (?)", \
-                ('myMovie.mpg',))
-    cur.execute("REPLACE INTO tbl_files(string) VALUES (?)", \
-                ('World.txt',))
-    cur.execute("REPLACE INTO tbl_files(string) VALUES (?)", \
-                ('data.pdf',))
-    cur.execute("REPLACE INTO tbl_files(string) VALUES (?)", \
-                ('myPhoto.jpg',))
+    for x in fileList:
+        if '.txt' in x:
+            # adds anything with '.txt' into the db
+            cur.execute("REPLACE INTO tbl_files(string) VALUES (?)", \
+                        (('{}').format(x),)) # .format adds the file name to the sql command
+            # if a file gets added, print it to the console
+            print(x)
     conn.commit()
 conn.close()
-
-
-conn = sqlite3.connect('assignment.db')
-
-with conn:
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM tbl_files WHERE string LIKE '%.txt'")
-    varFile = cur.fetchall()
-    for item in varFile:
-        msg = "File:  {}".format(item[1])
-        print(msg)
