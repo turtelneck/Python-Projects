@@ -2,7 +2,6 @@
 
 import webbrowser
 from tkinter import *
-from pagemaker import makePage
 
 window = Tk()
 window.title("Webpage Creator")
@@ -34,7 +33,7 @@ def clicked():
         f.close()
 	
         # opens created page in new tab
-        webbrowser.open_new_tab("C:\\Users\\rhodr\\OneDrive\\Documents\\GitHub\\python-projects\\challenges\\html-page-creation\\new-page.html")
+        webbrowser.open_new_tab("new-page.html")
     
     # we pass the text to our function
     makePage(user_content)
