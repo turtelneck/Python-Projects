@@ -5,7 +5,7 @@ import time
 
 def run():
 
-    fPath = input("Enter the absolute path of the folder you'd like to check. \nInclude extra backslashes so the file is read properly: \n(example:  C:\\Users\\\YourName\\\Documents\\\ \n> ")
+    fPath = input("Enter the absolute path of the folder you'd like to check. \nInclude extra backslashes so the file is read properly: \n(example:  C:\\\Users\\\YourName\\\Documents\\\ \n> ")
     fType = input("What type of file are you looking for? \n(example: .txt) \n> ")
     folder = os.listdir(fPath)
     modTime = os.path.getmtime(fPath)
